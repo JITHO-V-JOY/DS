@@ -67,8 +67,8 @@
 			
 		}
 		
-		if(loc > lengthOfList()) { // index exceeded the length;
-			System.out.println("index exceeded the length");
+		if(loc > lengthOfList()) { // location exceeded the length;
+			System.out.println("location exceeded the length");
 			return;
 		}
 		
@@ -103,8 +103,8 @@
 		}
 		
 		
-		if(loc > lengthOfList()) { // index exceeded the length;
-			System.out.println("index exceeded the length");
+		if(loc > lengthOfList()) { // location exceeded the length;
+			System.out.println("location exceeded the length");
 			return;
 		}
 		
