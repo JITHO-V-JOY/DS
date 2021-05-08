@@ -1,5 +1,5 @@
 
-// FIFO principle
+// LIFO principle
 class Stack{
 	
 	int capacity;
