@@ -140,14 +140,9 @@
 			System.out.println(out+"\n");
 		}
 	}
-	
-	
-}
-
-
- class Main {
-	
-	 public static void main(String[] args) {
+	 
+	 
+	  public static void main(String[] args) {
 		 
 		SinglyLinkedList list  = new SinglyLinkedList();
 		 
@@ -169,7 +164,12 @@
 	 
 	 
 	 }
+	
+	
 }
+
+
+
 	
 
 
