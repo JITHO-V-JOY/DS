@@ -43,6 +43,63 @@ class BinarySearchTree{
 		}
 	}
 
+	Node leftMostNode(Node tmp){
+		while(tmp.left != null){
+			tmp = tmp.left;
+		}
+
+		return tmp;
+	}
+
+	Node find(Node tmp, int key){
+		 while(tmp != null){
+                        if(tmp.data == key){
+                                break;
+                        }
+                        else if(tmp.data > key ){
+                                tmp = tmp.left;
+                        }else{
+                                tmp = tmp.right;
+                        }
+
+                }
+		if(tmp == null){
+			return null;
+		}
+		else{
+			return tmp;
+		}
+
+	}
+
+	Node inorderSuccessor(Node root, int key){
+		
+		Node current = find(root, key);
+		if(current == null) return null;
+
+		if(current.right != null){
+			 //case 1: if it has right subtree
+			return leftMostNode(current.right);
+		}else{
+			 //case 1: if it has no right subtree
+			Node successor = null;
+			Node ancestor = root;
+
+			while(ancestor.data != current.data){
+				if(ancestor.data < current.data){
+					successor = ancestor;
+					ancestor = ancestor.left;
+				}else{
+					ancestor = ancestor.right;
+				}
+			}
+
+			return successor;
+		}
+	}
+
+
+
 
 	void preorder(Node node){
 		if(node == null){
@@ -86,7 +143,7 @@ class Main{
 		bst.insert(30);
 		bst.insert(18);
 		bst.insert(5);
-		bst.insert(7);
+		bst.insert(9);
 		
 		System.out.println("preorder traversal");
 		bst.preorder(bst.root);
@@ -94,5 +151,9 @@ class Main{
 		bst.inorder(bst.root);
 		System.out.println("postorder traversal");
 		bst.postorder(bst.root);
+
+		Node inorderSuccessor = bst.inorderSuccessor(bst.root, 10);
+		System.out.println("inorder successor of 10 is "+ inorderSuccessor.data);
+		
 	}
 }
