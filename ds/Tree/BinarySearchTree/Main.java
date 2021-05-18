@@ -104,7 +104,7 @@ class BinarySearchTree{
 			 //case 1: if it has right subtree
 			return leftMostNode(current.right);
 		}else{
-			 //case 1: if it has no right subtree
+			 //case 2: if it has no right subtree
 			Node successor = null;
 			Node ancestor = root;
 
