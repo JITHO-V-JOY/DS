@@ -51,6 +51,29 @@ class BinarySearchTree{
 		return tmp;
 	}
 
+	Node prevNode(Node temp, int key){
+		Node prev = temp;
+		while(temp!= null){
+			if(temp.data == key){
+				break;
+			}
+			else if(temp.data > key){
+				prev = temp;
+				temp = temp.left;
+			}
+			else{
+				prev = temp;
+				temp = temp.right;
+			}
+		}
+		if(temp == null){
+			return null;
+		}
+		else{
+			return prev;
+		}
+	}
+
 	Node find(Node tmp, int key){
 		 while(tmp != null){
                         if(tmp.data == key){
@@ -95,6 +118,76 @@ class BinarySearchTree{
 			}
 
 			return successor;
+		}
+	}
+
+	void deleteNode(Node root, int key){
+		Node current = find(root, key);
+		Node prev = prevNode(root, key);
+
+		if(current == null){
+			System.out.println("Node is not found\n");
+			return;
+		}
+		// case 1: leaf node
+		if(current.left == null && current.right == null){
+			if(current.data < prev.data){
+				prev.left = null;
+				System.out.println("Node "+key+"  is deleted\n");
+
+			}
+			else{
+				prev.right = null;
+				System.out.println("Node "+key+"  is deleted\n");
+			}
+		}
+		// case 2: Node has one child
+		else if (current.left == null || current.right == null){
+			if(current.left != null){
+				current = current.left;
+				if(prev.data < current.data){
+					prev.right = current;
+				}
+				else{
+					prev.left = current;
+				}
+				System.out.println("Node "+key+"  is deleted\n");
+			}
+			else{
+				current = current.right;
+				 if(prev.data < current.data){
+                                        prev.right = current;
+                                }
+                                else{
+                                        prev.left = current;
+                                }
+                                System.out.println("Node "+key+"  is deleted\n");
+                        }
+
+		}
+		// case 3: Node has both children 
+		else{
+			Node inorderSuccessor = inorderSuccessor(root, key);
+			Node prevnode = prevNode(root, inorderSuccessor.data);
+			if(inorderSuccessor.left == null && inorderSuccessor.right == null){
+				if(prevnode.data > inorderSuccessor.data){
+					prevnode.left = null;
+				}else{
+					prevnode.right = null;
+				}
+				current.data = inorderSuccessor.data;
+				System.out.println("Node "+key+"  is deleted\n");
+			}
+			else{
+				current.data = inorderSuccessor.data;
+				current.right = inorderSuccessor.right;
+				System.out.println("Node "+key+"  is deleted\n");
+
+			}
+
+			
+
+
 		}
 	}
 
@@ -154,6 +247,9 @@ class Main{
 
 		Node inorderSuccessor = bst.inorderSuccessor(bst.root, 10);
 		System.out.println("inorder successor of 10 is "+ inorderSuccessor.data);
+
+		bst.deleteNode(bst.root, 10);
+		bst.inorder(bst.root);
 		
 	}
 }
