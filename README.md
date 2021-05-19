@@ -1,2 +1,3 @@
 # java_pgms
-Data Structures implementation in  java
+# 1. Data Structures
+# 2. Strings
